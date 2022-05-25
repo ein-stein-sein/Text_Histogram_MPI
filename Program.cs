@@ -16,7 +16,12 @@ class Program
 
             if (comm.Rank == 0)
             {
-                string filename = @"C:\Users\torak\Source\Repos\Text_Histogram_Sequential\kamasutra.txt";
+                if (args.Length == 0)
+                {
+                    Console.WriteLine("Please specify file to analyze!");
+                    return;
+                }
+                string filename = args[0];
                 Console.WriteLine($"Analyzing: {filename}");
 
                 string text = File.ReadAllText(filename);
@@ -46,6 +51,10 @@ class Program
 
             else
             {
+                if (args.Length == 0)
+                {
+                    return;
+                }
                 Console.WriteLine($"Process {comm.Rank} started.");
                 string text = "";
                 comm.Receive(0, 1, out text);
