@@ -13,15 +13,6 @@
             this.WordCounts = wordCounts;
             this.CharacterCounts = characterCounts;
         }
-        public void combineResults(Result result)
-        {
-            this.WordCounts = this.WordCounts.Concat(result.WordCounts)
-                                      .GroupBy(o => o.Key)
-                                      .ToDictionary(o => o.Key, o => o.Sum(v => v.Value));
-            this.CharacterCounts = this.CharacterCounts.Concat(result.CharacterCounts)
-                                      .GroupBy(o => o.Key)
-                                      .ToDictionary(o => o.Key, o => o.Sum(v => v.Value));
-        }
 
     }
 }
