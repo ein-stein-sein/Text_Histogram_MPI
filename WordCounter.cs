@@ -20,7 +20,11 @@
             {
                 separators.Add(c);
             }
-            separators.Add('|');
+            // Exclude the ASCII characters after 'z'
+            for (char c = (char)('z' + 1); c < 128; c++)
+            {
+                separators.Add(c);
+            }
         }
 
         public void Process(char c)
