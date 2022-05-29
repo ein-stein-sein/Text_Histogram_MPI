@@ -1,24 +1,30 @@
-﻿namespace Histogram_Sequential
+﻿namespace Histogram_MPI
 {
+    /// <summary>
+    /// Class for counting all characters in a given text.
+    /// The counting is case-sensitive.
+    /// </summary>
     internal class CharacterCounter
     {
-        readonly Dictionary<char, int> characterCounts = new Dictionary<char, int>();
+        /// <summary>
+        /// The counts for each character.
+        /// </summary>
+        public Dictionary<char, int> CharacterCounts { get; } = new();
 
+        /// <summary>
+        /// Processes a single character in order to count the characters.
+        /// </summary>
+        /// <param name="c">The character to process</param>
         public void Process(char c)
         {
-            if (characterCounts.ContainsKey(c))
+            if (CharacterCounts.ContainsKey(c))
             {
-                characterCounts[c] += 1;
+                CharacterCounts[c] += 1;
             }
             else
             {
-                characterCounts[c] = 1;
+                CharacterCounts[c] = 1;
             }
-        }
-
-        public Dictionary<char, int> GetCharacterCounts()
-        {
-            return characterCounts;
         }
 
     }

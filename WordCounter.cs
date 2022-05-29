@@ -1,13 +1,22 @@
-﻿namespace Histogram_Sequential
+﻿namespace Histogram_MPI
 {
+    /// <summary>
+    /// Class for counting the words in a text.
+    /// </summary>
     public class WordCounter
     {
-        private readonly Dictionary<string, int> wordCounts = new();
+        /// <summary>
+        /// The counts for each word.
+        /// </summary>
+        public Dictionary<string, int> WordCounts { get; } = new();
 
         private readonly HashSet<char> separators = new();
 
         private string currentWord = "";
 
+        /// <summary>
+        /// Constructs a new <see cref="WordCounter"/>
+        /// </summary>
         public WordCounter()
         {
             // Exclude all characters before 'A'
@@ -27,6 +36,10 @@
             }
         }
 
+        /// <summary>
+        /// Processes a single character in order to count the words.
+        /// </summary>
+        /// <param name="c">The current character to process</param>
         public void Process(char c)
         {
             if (separators.Contains(c))
@@ -40,11 +53,6 @@
             }
         }
 
-        public Dictionary<string, int> GetWordCounts()
-        {
-            return wordCounts;
-        }
-
         private void IncrementWordCount()
         {
             if (currentWord == "")
@@ -52,13 +60,13 @@
                 return;
             }
 
-            if (wordCounts.ContainsKey(currentWord))
+            if (WordCounts.ContainsKey(currentWord))
             {
-                wordCounts[currentWord]++;
+                WordCounts[currentWord]++;
             }
             else
             {
-                wordCounts[currentWord] = 1;
+                WordCounts[currentWord] = 1;
             }
 
         }

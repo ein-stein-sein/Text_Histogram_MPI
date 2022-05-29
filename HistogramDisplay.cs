@@ -1,8 +1,15 @@
-﻿namespace Histogram_Sequential
+﻿namespace Histogram_MPI
 {
-    internal class HistogramDisplay
+    /// <summary>
+    /// Class for displaying a histogram of character and word counts in the console
+    /// </summary>
+    internal static class HistogramDisplay
     {
-        public void Display(Result result)
+        /// <summary>
+        /// Displays the given result in the console
+        /// </summary>
+        /// <param name="result">The result to display</param>
+        public static void Display(Result result)
         {
             Console.WriteLine("-------");
             Console.WriteLine("CHARACTER COUNT");

@@ -1,10 +1,17 @@
-﻿using Histogram_Sequential;
-using MPI;
+﻿using MPI;
 
 namespace Histogram_MPI
 {
+    /// <summary>
+    /// Program of the master.
+    /// </summary>
     internal class MasterProgram
     {
+        /// <summary>
+        /// Runs the program of the master.
+        /// </summary>
+        /// <param name="args">the command line arguments</param>
+        /// <param name="comm">the MPI intracommunicator</param>
         public static void Run(string[] args, Intracommunicator comm)
         {
             if (args.Length == 0)
@@ -30,17 +37,15 @@ namespace Histogram_MPI
                 //Console.WriteLine($"Sample: {parts[i].Substring(0, 30)}...");
             }
 
-            HistogramDisplay histogramDisplay = new HistogramDisplay();
-
             Result result = new(new Dictionary<char, int>(), new Dictionary<string, int>());
             for (int workerProcess = 1; workerProcess <= workerCount; workerProcess++)
             {
                 Result newResult = comm.Receive<Result>(workerProcess, 0);
-                result.combineResults(newResult);
+                result.CombineResults(newResult);
             }
             double wtime2 = Unsafe.MPI_Wtime();
             Console.WriteLine($"Took {wtime2 - wtime} seconds");
-            histogramDisplay.Display(result);
+            HistogramDisplay.Display(result);
 
         }
     }

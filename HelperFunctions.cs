@@ -1,5 +1,8 @@
-﻿namespace Histogram_Sequential
+﻿namespace Histogram_MPI
 {
+    /// <summary>
+    /// Class for helper functions.
+    /// </summary>
     public static class HelperFunctions
     {
         /// <summary>
