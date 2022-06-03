@@ -1,14 +1,14 @@
 ﻿using Histogram_Sequential;
 using MPI;
-
+using System.Diagnostics;
 
 class Program
 {
     static void Main(string[] args)
     {
+        var stopWatch = Stopwatch.StartNew();
         using (new MPI.Environment(ref args))
         {
-            double startWtime = Unsafe.MPI_Wtime();
             if (args.Length == 0)
             {
                 Console.WriteLine("Please specify file to analyze as command line argument!");
@@ -40,8 +40,8 @@ class Program
             if (comm.Rank == 0)
             {
                 Result finalResult = CombineResults(results);
-                double endWtime = Unsafe.MPI_Wtime();
-                Console.WriteLine($"Took {endWtime - startWtime} seconds");
+                stopWatch.Stop();
+                Console.WriteLine($"It took {stopWatch.Elapsed.TotalSeconds} seconds");
 
                 HistogramDisplay histogramDisplay = new HistogramDisplay();
                 histogramDisplay.Display(finalResult);
