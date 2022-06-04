@@ -13,24 +13,45 @@
         /// <returns>An array of strings with roughly the same count of words.</returns>
         public static string[] SplitIntoChunks(string text, int nChunks)
         {
-            var lines = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            return lines.Split(nChunks).Select(p => String.Join(" ", p.ToList())).ToArray();
-        }
+            int sizePerChunk = text.Length / nChunks;
 
-        /// <summary>
-        /// Splits an array into several smaller arrays.
-        /// </summary>
-        /// <typeparam name="T">The type of the array.</typeparam>
-        /// <param name="array">The array to split.</param>
-        /// <param name="size">The size of the smaller arrays.</param>
-        /// <returns>An array containing smaller arrays.</returns>
-        private static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> list, int parts)
-        {
-            int i = 0;
-            var splits = from item in list
-                         group item by i++ % parts into part
-                         select part.AsEnumerable();
-            return splits;
+            string[] result = new string[nChunks];
+            for (int i = 0; i < nChunks; i++)
+            {
+                result[i] = "";
+            }
+
+            int endPosition = 0;
+            int currentChunk = 0;
+            bool finished = false;
+            while (!finished)
+            {
+                int startPosition = endPosition;
+                endPosition = startPosition + sizePerChunk;
+                if (currentChunk == (nChunks - 1) || endPosition >= text.Length)
+                {
+                    result[currentChunk] = text.Substring(startPosition);
+                    finished = true;
+                }
+                else
+                {
+                    while (text[endPosition] != ' ')
+                    {
+                        endPosition++;
+                        if (endPosition >= text.Length)
+                        {
+                            // if the last word reaches the end of the text, stop
+                            finished = true;
+                            break;
+                        }
+                    }
+                    result[currentChunk] = text[startPosition..endPosition];
+
+                }
+
+                currentChunk++;
+            }
+            return result;
         }
 
     }
