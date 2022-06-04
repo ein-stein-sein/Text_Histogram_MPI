@@ -1,9 +1,9 @@
 ﻿namespace Histogram_MPI
 {
     /// <summary>
-    /// Class for helper functions.
+    /// Class splitting texts.
     /// </summary>
-    public static class HelperFunctions
+    public static class TextSplitter
     {
         /// <summary>
         /// Splits a string into n roughly equal parts, not cutting off words.
@@ -16,6 +16,7 @@
             int sizePerChunk = text.Length / nChunks;
 
             string[] result = new string[nChunks];
+            // Initialize
             for (int i = 0; i < nChunks; i++)
             {
                 result[i] = "";

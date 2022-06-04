@@ -26,7 +26,7 @@ class Program
                 Console.WriteLine($"Analyzing: {filename}");
 
                 string text = File.ReadAllText(filename);
-                string[] parts = HelperFunctions.SplitIntoChunks(text, comm.Size);
+                string[] parts = TextSplitter.SplitIntoChunks(text, comm.Size);
                 textPart = comm.Scatter(parts);
             }
             else

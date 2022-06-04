@@ -3,13 +3,13 @@
 namespace Histogram_MPI.Tests
 {
     [TestClass()]
-    public class HelperFunctionsTests
+    public class TextSplitterTests
     {
         [TestMethod("Text empty")]
         public void TextEmptySplitIntoChunksTest()
         {
             string exampleText = "";
-            string[] parts = HelperFunctions.SplitIntoChunks(exampleText, 3);
+            string[] parts = TextSplitter.SplitIntoChunks(exampleText, 3);
             int sumPartsLength = parts.Select(p => p.Length).Sum();
 
             Assert.AreEqual(parts[0], "");
@@ -21,7 +21,7 @@ namespace Histogram_MPI.Tests
         public void SplitIntoChunksTest1()
         {
             string exampleText = "Th";
-            string[] parts = HelperFunctions.SplitIntoChunks(exampleText, 3);
+            string[] parts = TextSplitter.SplitIntoChunks(exampleText, 3);
             int sumPartsLength = parts.Select(p => p.Length).Sum();
 
             Assert.AreEqual(parts[0], "Th");
@@ -33,7 +33,7 @@ namespace Histogram_MPI.Tests
         public void SplitIntoChunksTest2()
         {
             string exampleText = "This ifwefs my text123";
-            string[] parts = HelperFunctions.SplitIntoChunks(exampleText, 3);
+            string[] parts = TextSplitter.SplitIntoChunks(exampleText, 3);
             int sumPartsLength = parts.Select(p => p.Length).Sum();
 
             AssertEqualLength(exampleText, parts);
@@ -53,7 +53,7 @@ with this eBook or online at www.gutenberg.org
 
 Title: Les Miserables
        Complete in Five Volumes";
-            string[] parts = HelperFunctions.SplitIntoChunks(exampleText, 3);
+            string[] parts = TextSplitter.SplitIntoChunks(exampleText, 3);
             int sumPartsLength = parts.Select(p => p.Length).Sum();
 
             AssertEqualLength(exampleText, parts);
