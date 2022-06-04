@@ -20,6 +20,7 @@
                 characterCounter.Process(a);
                 wordCounter.Process(a);
             }
+            wordCounter.Finish();
 
             return new Result(characterCounter.CharacterCounts, wordCounter.WordCounts);
         }

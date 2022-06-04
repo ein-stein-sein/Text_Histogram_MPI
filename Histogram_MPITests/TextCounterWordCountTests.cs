@@ -21,6 +21,21 @@ namespace Histogram_MPI.Tests
             Assert.AreEqual(1, result.WordCounts["dream"]);
         }
 
+        [TestMethod("Simple sentence word count 2 test")]
+        public void SimpleSentenceWordCount2Test()
+        {
+            TextCounter counter = new();
+
+            Result result = counter.Count("most honorable pomp that could");
+
+            Assert.AreEqual(5, result.WordCounts.Count);
+            Assert.AreEqual(1, result.WordCounts["most"]);
+            Assert.AreEqual(1, result.WordCounts["honorable"]);
+            Assert.AreEqual(1, result.WordCounts["pomp"]);
+            Assert.AreEqual(1, result.WordCounts["that"]);
+            Assert.AreEqual(1, result.WordCounts["could"]);
+        }
+
         [TestMethod("Simple sentence with exclamation mark word count test")]
         public void SimpleSentenceWithExclamationMarkWordCountTest()
         {

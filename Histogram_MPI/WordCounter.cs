@@ -53,6 +53,15 @@
             }
         }
 
+        /// <summary>
+        /// This method must be called when the end of the text is reached.
+        /// </summary>
+        public void Finish()
+        {
+            IncrementWordCount();
+            currentWord = "";
+        }
+
         private void IncrementWordCount()
         {
             if (currentWord == "")
