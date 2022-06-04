@@ -1,11 +1,12 @@
 ﻿using Histogram_MPI;
 using MPI;
-
+using System.Diagnostics;
 
 class Program
 {
     static void Main(string[] args)
     {
+        Stopwatch stopWatch = Stopwatch.StartNew();
         using (new MPI.Environment(ref args))
         {
 
@@ -13,7 +14,7 @@ class Program
 
             if (comm.Rank == 0)
             {
-                MasterProgram.Run(args, comm);
+                MasterProgram.Run(stopWatch, args, comm);
             }
             else
             {

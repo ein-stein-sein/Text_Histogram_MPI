@@ -18,14 +18,14 @@ namespace Histogram_MPI
             {
                 return;
             }
-            Console.WriteLine($"Process {comm.Rank} started.");
+            //Console.WriteLine($"Process {comm.Rank} started.");
             comm.Receive(0, 1, out string text);
-            Console.WriteLine($"Process {comm.Rank} received it´s text part.");
+            //Console.WriteLine($"Process {comm.Rank} received it´s text part.");
 
             TextCounter counter = new TextCounter();
             Result result = counter.Count(text);
-            Console.WriteLine($"Process {comm.Rank} has {result.CharacterCounts.Count} character counts");
-            Console.WriteLine($"Process {comm.Rank} has {result.WordCounts.Count} word counts");
+            //Console.WriteLine($"Process {comm.Rank} has {result.CharacterCounts.Count} character counts");
+            //Console.WriteLine($"Process {comm.Rank} has {result.WordCounts.Count} word counts");
 
             comm.Send(result, 0, 0);
         }
