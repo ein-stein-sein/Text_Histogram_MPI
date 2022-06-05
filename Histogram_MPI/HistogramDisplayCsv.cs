@@ -3,12 +3,12 @@
 namespace Histogram_Sequential
 {
     /// <summary>
-    /// Class for displaying a histogram of character and word counts in CSV files
+    /// Class for writing histograms of character and word counts into CSV files
     /// </summary>
     internal static class HistogramDisplayCsv
     {
         /// <summary>
-        /// Displays the given result in CSV files
+        /// Write the given result in CSV files
         /// </summary>
         /// <param name="result">The result to display</param>
         /// <param name="characterCountFilename">the filename for the character count</param>

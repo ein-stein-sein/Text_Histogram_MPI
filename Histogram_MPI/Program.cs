@@ -1,12 +1,10 @@
 ﻿using Histogram_MPI;
 using MPI;
-using System.Diagnostics;
 
 class Program
 {
     static void Main(string[] args)
     {
-        var stopWatch = Stopwatch.StartNew();
         using (new MPI.Environment(ref args))
         {
             if (args.Length == 0)
@@ -40,10 +38,7 @@ class Program
             if (comm.Rank == 0)
             {
                 Result finalResult = CombineResults(results);
-                stopWatch.Stop();
-                Console.WriteLine($"It took {stopWatch.Elapsed.TotalSeconds} seconds");
-
-                //HistogramDisplay.Display(finalResult);
+                HistogramDisplay.Display(finalResult);
             }
         }
 
