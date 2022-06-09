@@ -18,8 +18,7 @@ class Program
             string textPart;
             if (comm.Rank == 0)
             {
-                // read the file
-                // split file into list of n lists, where n is the comm.size - 1
+                // Master
                 string filename = args[0];
                 Console.WriteLine($"Analyzing: {filename}");
 
@@ -29,6 +28,7 @@ class Program
             }
             else
             {
+                // Worker
                 textPart = comm.Scatter<string>(0);
             }
 
@@ -37,6 +37,7 @@ class Program
 
             if (comm.Rank == 0)
             {
+                // Master
                 Result finalResult = CombineResults(results);
                 HistogramDisplay.Display(finalResult);
             }

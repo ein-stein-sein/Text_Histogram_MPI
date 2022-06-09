@@ -28,20 +28,6 @@
             this.CharacterCounts = characterCounts;
         }
 
-        /// <summary>
-        /// Combine another result to this result.
-        /// </summary>
-        /// <param name="result">The other result.</param>
-        public void CombineResults(Result result)
-        {
-            this.WordCounts = this.WordCounts.Concat(result.WordCounts)
-                                      .GroupBy(o => o.Key)
-                                      .ToDictionary(o => o.Key, o => o.Sum(v => v.Value));
-            this.CharacterCounts = this.CharacterCounts.Concat(result.CharacterCounts)
-                                      .GroupBy(o => o.Key)
-                                      .ToDictionary(o => o.Key, o => o.Sum(v => v.Value));
-        }
-
     }
 
 }
